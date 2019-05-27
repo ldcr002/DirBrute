@@ -20,13 +20,13 @@ import optparse
 
 # 全局配置
 using_dic = ''  # 使用的字典文件
-threads_count = 1  # 线程数
+threads_count = 5  # 线程数
 timeout = 3  # 超时时间
-allow_redirects = True  # 是否允许URL重定向
+allow_redirects = False  # 是否允许URL重定向
 headers = {  # HTTP 头设置
              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20',
              'Referer': 'http://www.google.com',
-             'Cookie': 'whoami=wyscan_dirfuzz',
+             'Cookie': 'adfafa=fdafdgradaffdfadf',
              }
 proxies = {  # 代理配置
     # "http": "http://user:pass@10.10.1.10:3128/",
@@ -68,11 +68,11 @@ class WyWorker(threading.Thread):
 def fuzz_start(siteurl, file_ext):
     output = CLIOutput()
 
-    if not siteurl.startswith('http://'):
+    if siteurl.startswith('http://') == False and siteurl.startswith('https://') == False:
         siteurl = 'http://%s' % siteurl
 
     # 检查waf是否存在
-    checkWaf(url=siteurl, header=headers, proxy=proxies, timeout=timeout, allow_redirects=allow_redirects)
+    #checkWaf(url=siteurl, header=headers, proxy=proxies, timeout=timeout, allow_redirects=allow_redirects)
 
     global dir_exists
     dir_exists = []
