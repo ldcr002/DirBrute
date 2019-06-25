@@ -10,7 +10,7 @@
 		* 线程组遍历，使每个独立的线程join()，等待主线程退出后，再进入主进程
 '''
 
-import libs.requests as requests
+import requests
 from libs.output import *
 from libs.utils.FileUtils import FileUtils
 from libs.checkWAF import checkWaf
@@ -36,8 +36,9 @@ proxies = {  # 代理配置
 
 
 def dir_check(url):
+    requests.packages.urllib3.disable_warnings()
     return requests.get(url, stream=True, headers=headers, timeout=timeout, proxies=proxies,
-                        allow_redirects=allow_redirects)
+                        allow_redirects=allow_redirects, verify=False)
 
 
 class WyWorker(threading.Thread):
