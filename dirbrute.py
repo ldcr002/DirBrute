@@ -56,7 +56,7 @@ class WyWorker(threading.Thread):
             try:
                 url = self.queue.get_nowait()
                 results = dir_check(url)
-                if results.status_code == requests.codes.ok:
+                if results.status_code == requests.codes.ok and results.content not in blacklist:
                     dir_exists.append(url)
                     # print results.status_code
                     msg = "[%s]:%s \n" % (results.status_code, results.url)
@@ -77,6 +77,11 @@ def fuzz_start(siteurl, file_ext):
 
     global dir_exists
     dir_exists = []
+
+    global blacklist
+    blacklist = []
+    blacklist.append(dir_check(siteurl + 'fdhasuyfgryufgasfkdsfeowueir47738473943fhu.html').content)
+
 
     # 生成队列堆栈
     queue = Queue.Queue()
