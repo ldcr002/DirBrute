@@ -9,14 +9,14 @@
 		* 启动线程组
 		* 线程组遍历，使每个独立的线程join()，等待主线程退出后，再进入主进程
 '''
-
+import threading
+import Queue
+import optparses
 import requests
 from libs.output import *
 from libs.utils.FileUtils import FileUtils
 from libs.checkWAF import checkWaf
-import threading
-import Queue
-import optparse
+
 
 # 全局配置
 using_dic = ''  # 使用的字典文件
