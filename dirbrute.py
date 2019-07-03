@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
+
 # email: i@cdxy.me
 # github: http://github.com/Xyntax
 
@@ -9,13 +10,16 @@
 		* 启动线程组
 		* 线程组遍历，使每个独立的线程join()，等待主线程退出后，再进入主进程
 '''
+
 import threading
 import Queue
-import optparses
-import requests
 from libs.output import *
 from libs.utils.FileUtils import FileUtils
 from libs.checkWAF import checkWaf
+import optparse
+import requests
+
+
 
 
 # 全局配置

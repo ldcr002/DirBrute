@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 #  -*- coding: utf-8 -*-
 __author__ = 'xy'
-import libs.requests as requests
+import requests
 import sys
 from libs.output import *
 
