@@ -84,7 +84,7 @@ def fuzz_start(siteurl, file_ext):
 
     global blacklist
     blacklist = []
-    blacklist.append(dir_check(siteurl + 'fdhasuyfgryufgasfkdsfeowueir47738473943fhu.html').content)
+    blacklist.append(dir_check(siteurl + '/fdhasuyfgryufgasfkdsfeowueir47738473943fhu.html').content)
 
 
     # 生成队列堆栈
