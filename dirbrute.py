@@ -25,7 +25,7 @@ import requests
 # 全局配置
 using_dic = ''  # 使用的字典文件
 threads_count = 5  # 线程数
-timeout = 3  # 超时时间
+timeout = 10  # 超时时间
 allow_redirects = False  # 是否允许URL重定向
 headers = {  # HTTP 头设置
              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20',
@@ -39,10 +39,12 @@ proxies = {  # 代理配置
 }
 
 
+
 def dir_check(url):
     requests.packages.urllib3.disable_warnings()
     return requests.get(url, stream=True, headers=headers, timeout=timeout, proxies=proxies,
                         allow_redirects=allow_redirects, verify=False)
+
 
 
 class WyWorker(threading.Thread):
@@ -85,6 +87,7 @@ def fuzz_start(siteurl, file_ext):
     global blacklist
     blacklist = []
     blacklist.append(dir_check(siteurl + '/fdhasuyfgryufgasfkdsfeowueir47738473943fhu.html').content)
+    blacklist.append(dir_check(siteurl + '/fdhasuyfgryufgasfkdsfeowueir477384dd43fhu').content)
 
 
     # 生成队列堆栈
