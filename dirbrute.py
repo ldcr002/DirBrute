@@ -25,7 +25,7 @@ import requests
 # 全局配置
 using_dic = ''  # 使用的字典文件
 threads_count = 5  # 线程数
-timeout = 10  # 超时时间
+timeout = 5  # 超时时间
 allow_redirects = False  # 是否允许URL重定向
 headers = {  # HTTP 头设置
              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20',
