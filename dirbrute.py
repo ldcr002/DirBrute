@@ -41,9 +41,12 @@ proxies = {  # 代理配置
 
 
 def dir_check(url):
-    requests.packages.urllib3.disable_warnings()
-    return requests.get(url, stream=True, headers=headers, timeout=timeout, proxies=proxies,
+    try:
+        requests.packages.urllib3.disable_warnings()
+        return requests.get(url, stream=True, headers=headers, timeout=timeout, proxies=proxies,
                         allow_redirects=allow_redirects, verify=False)
+    except Exception as e:
+        return requests.HTTPError
 
 
 
@@ -131,13 +134,19 @@ if __name__ == "__main__":
                       help='Number of threads. default = 10')
     parser.add_option('-d', '--dic', dest='dic_path', default='./dics/dirs.txt',
                       type='string', help='Default dictionaty: ./dics/dirs.txt')
+    parser.add_option('-f', '--file', dest='target_file_path', default='',
+                      type='string',help='Default dictionaty:\'\'')
     (options, args) = parser.parse_args()
 
     if options.dic_path:
         using_dic = options.dic_path
     if options.threads_num:
         threads_count = options.threads_num
-    if len(sys.argv) > 1:
+    if options.target_file_path:
+        target_file_path = options.target_file_path
+        for line in FileUtils.getLines(target_file_path):
+            fuzz_start(line, options.ext)
+    elif len(sys.argv) > 1:
         fuzz_start(sys.argv[1], options.ext)
     else:
         parser.print_help()
